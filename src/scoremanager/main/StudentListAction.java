@@ -19,8 +19,8 @@ import tool.Action;
 public class StudentListAction extends Action {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		HttpSession session = request.getSession();  // セッション
+	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		HttpSession session = req.getSession();  // セッション
 		Teacher teacher = (Teacher)session.getAttribute("user");
 
 		String entYearStr = "";  // 入力された入学年度
@@ -35,15 +35,12 @@ public class StudentListAction extends Action {
 		ClassNumDao cNumDao = new ClassNumDao();  // クラス番号Daoを初期化
 		Map<String, String> errors = new HashMap<>();  // エラーメッセージ
 
-		HttpServletRequest req = request;
-		HttpServletResponse res = response;
-
-		// リクエストパラメーターの取得2
+		// リクエストパラメーターの取得
 		entYearStr = req.getParameter("f1");
 		classNum = req.getParameter("f2");
 		isAttendStr = req.getParameter("f3");
 
-		// DBからデータ取得3
+		// DBからデータ取得
 		// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 		List<String> list = cNumDao.filter(teacher.getSchool());
 
@@ -64,7 +61,7 @@ public class StudentListAction extends Action {
 			students = sDao.filter(teacher.getSchool(), isAttend);
 		}
 
-		// ビジネスロジック4
+		// ビジネスロジック
 		if (entYearStr != null) {
 			// 数値に変換
 			entYear = Integer.parseInt(entYearStr);
@@ -76,7 +73,7 @@ public class StudentListAction extends Action {
 			entYearSet.add(i);
 		}
 
-		// レスポンス値をセット6
+		// レスポンス値をセット
 		// リクエストに入学年度をセット
 		req.setAttribute("f1", entYear);
 		// リクエストにクラス番号をセット
@@ -94,7 +91,7 @@ public class StudentListAction extends Action {
 		req.setAttribute("class_num_set", list);
 		req.setAttribute("ent_year_set", entYearSet);
 
-		// JSPへフォワード7
+		// JSPへフォワード
 		req.getRequestDispatcher("student_list.jsp").forward(req, res);
 	}
 
