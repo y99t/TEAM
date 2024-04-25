@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import tool.Action;
 
-public class SubjectDeleteDoneAction extends Action {
+public class SubjectUpdateAction extends Action {
 
 	@Override
 	public String getJspName() {

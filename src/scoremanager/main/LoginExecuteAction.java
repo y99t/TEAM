@@ -11,7 +11,7 @@ import tool.Action;
 public class LoginExecuteAction extends Action {
 
 	@Override
-	public String execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		HttpSession session = req.getSession();
 
@@ -21,10 +21,11 @@ public class LoginExecuteAction extends Action {
 		Teacher teacher = dao.login(id, password);
 
 		if (teacher != null) {
-			session.setAttribute("teacher", teacher);
-			return "menu.jsp";
+			session.setAttribute("user", teacher);
+			req.getRequestDispatcher("menu.jsp").forward(req, res);
 		}
 
-		return "login.jsp";
+		req.getRequestDispatcher("login.jsp").forward(req, res);
+
 	}
 }

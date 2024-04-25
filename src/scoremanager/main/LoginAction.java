@@ -8,7 +8,9 @@ import tool.Action;
 public class LoginAction extends Action {
 
 	@Override
-	public String execute(HttpServletRequest req, HttpServletResponse res) {
-		return "login.jsp";
+	public void execute(
+		HttpServletRequest req, HttpServletResponse res
+	) throws Exception {
+		req.getRequestDispatcher("login.jsp").forward(req, res);
 	}
 }

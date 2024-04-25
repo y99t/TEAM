@@ -330,4 +330,19 @@ public class StudentDao extends Dao {
 			return false;
 		}
 	}
+
+	public void delete(String no) throws Exception {
+		// コネクションを確立
+		Connection connection = ds.getConnection();
+
+		// SQL文
+		PreparedStatement statement = connection.prepareStatement("delete from student where no = ?");
+		statement.setString(1, no);
+
+		statement.executeUpdate();
+		// プリペアードステートメントを閉じる
+		statement.close();
+		// コネクションを閉じる
+		connection.close();
+	}
 }

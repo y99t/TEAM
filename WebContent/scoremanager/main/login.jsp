@@ -15,15 +15,15 @@
 			<ul>
 				<li>ログインに失敗しました。IDまたはパスワードが正しくありません。</li>
 			</ul>
-			<form action="LoginExecute.action"method="post">
+			<form action="LoginExecute.action" method="post">
 				<div class="id-input">
-					<input type="text" name="id" value="id" maxlength="20" style="ime-mode: active" placeholder="半角でご入力ください" required>
+					<input type="text" name="id" maxlength="20" style="ime-mode: active" placeholder="半角でご入力ください" required>
 				</div>
 				<div class="password-input">
-					<input type="password" name="password" value="password" maxlength="20" style="ime-mode: active" placeholder="20文字以内の半角英数字でご入力ください" required>
+					<input type="password" name="password" id="inputPassword" maxlength="20" style="ime-mode: active" placeholder="20文字以内の半角英数字でご入力ください" required>
 				</div>
 				<div class="password-disp">
-					<input type="checkbox" name="chk_d_ps" id="password-disp-check">
+					<input type="checkbox" name="chk_d_ps" id="inputCheckbox">
 					<label for="password-disp-check">パスワードを表示</label>
 				</div>
 				<div class="login-button">
